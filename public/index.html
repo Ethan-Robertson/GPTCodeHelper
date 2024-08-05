@@ -30,6 +30,7 @@
         <form id="optimize-form">
             <textarea name="code" id="code" placeholder="Paste your code here..."></textarea>
             <button type="submit">Optimize Code</button>
+            <button type="button" id="reset-button">Reset Page</button>
         </form>
         <h2>Optimized Code:</h2>
         <pre id="optimized-code"></pre>
@@ -59,6 +60,12 @@
             .catch(error => {
                 console.error('Error:', error);
             });
+        });
+
+        document.getElementById('reset-button').addEventListener('click', function() {
+            document.getElementById('code').value = '';
+            document.getElementById('optimized-code').textContent = '';
+            document.getElementById('optimization-steps').textContent = '';
         });
     </script>
 </body>

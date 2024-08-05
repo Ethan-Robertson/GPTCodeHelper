@@ -7,7 +7,7 @@ const app = express();
 
 // Your API endpoint and key
 const API_ENDPOINT = 'https://api.openai.com/v1/chat/completions'; // Update endpoint for chat models
-const API_KEY = 'insert api key here';
+const API_KEY = 'PUT API KEY HERE';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
