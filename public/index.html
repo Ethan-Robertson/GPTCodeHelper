@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Optimizer and Explainer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Code Optimizer and Explainer</h1>
+        <form id="optimize-form">
+            <textarea name="code" id="code" placeholder="Paste your code here..."></textarea>
+            <button type="submit">Optimize Code</button>
+        </form>
+        <h2>Optimized Code:</h2>
+        <pre id="optimized-code"></pre>
+        <h2>Steps for Optimization:</h2>
+        <pre id="optimization-steps"></pre>
+    </div>
+
+    <script>
+        document.getElementById('optimize-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            console.log('Form submitted'); // Debugging log
+            const code = document.getElementById('code').value;
+            console.log('Code:', code); // Debugging log
+            fetch('/optimize', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `code=${encodeURIComponent(code)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response:', data); // Debugging log
+                document.getElementById('optimized-code').textContent = data.optimized_code;
+                document.getElementById('optimization-steps').textContent = data.steps;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
